@@ -51,6 +51,14 @@ func (o *OrderedMap) Get(key string) (interface{}, bool) {
 	return val, exists
 }
 
+func (o *OrderedMap) GetOrDefault(key string, defaultValue interface{}) interface{} {
+	val, exists := o.values[key]
+	if !exists {
+		return defaultValue
+	}
+	return val
+}
+
 func (o *OrderedMap) Set(key string, value interface{}) {
 	_, exists := o.values[key]
 	if !exists {
