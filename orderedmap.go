@@ -42,6 +42,14 @@ func New() *OrderedMap {
 	return &o
 }
 
+func NewFromPairs(pairs []*Pair) *OrderedMap {
+	o := New()
+	for _, pair := range pairs {
+		o.Set(pair.key, pair.value)
+	}
+	return o
+}
+
 func (o *OrderedMap) SetEscapeHTML(on bool) {
 	o.escapeHTML = on
 }
