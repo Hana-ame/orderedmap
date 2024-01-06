@@ -3,6 +3,7 @@ package orderedmap
 import (
 	"bytes"
 	"encoding/json"
+	"reflect"
 	"sort"
 )
 
@@ -64,7 +65,10 @@ func (o *OrderedMap) GetOrDefault(key string, defaultValue interface{}) interfac
 	if !exists {
 		return defaultValue
 	}
-	return val
+	if reflect.TypeOf(val) == reflect.TypeOf(defaultValue) {
+		return val
+	}
+	return defaultValue
 }
 
 func (o *OrderedMap) Set(key string, value interface{}) {
